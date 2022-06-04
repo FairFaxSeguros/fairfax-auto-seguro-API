@@ -16,9 +16,6 @@
     "generate:migrate": "npx prisma generate && npm run migrate:seed",
     "migrate:start": "npm run migrate:seed && npm start"
   },
-  "prisma": {
-    "seed": "ts-node prisma/seeds/index.ts"
-  },
   "keywords": [],
   "author": "Leonardo Bittencourt Otero",
   "license": "ISC",
@@ -27,6 +24,7 @@
     "@sendgrid/mail": "^7.6.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.2",
     "dotenv": "^16.0.0",
     "dotenv-cli": "^5.1.0",
     "express": "^4.17.3",

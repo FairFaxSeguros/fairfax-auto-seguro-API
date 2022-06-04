@@ -9,6 +9,7 @@ datasource db {
 
 model Customer {
   id        Int       @id @default(autoincrement())
+  cpf      String     @db.VarChar(11) @unique 
   name      String    @db.VarChar(255)
   lastName  String    @db.VarChar(255)
   birthDate DateTime  @db.Date

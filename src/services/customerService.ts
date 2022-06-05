@@ -1,5 +1,7 @@
 import { Customer } from '@prisma/client';
 import dayjs from 'dayjs';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { client } from '../database.js';
 import { httpErrors } from '../errors/HttpError.js';
 
@@ -15,23 +17,36 @@ export async function create(data: Omit<Customer, 'id'>) {
     throw httpErrors.forbidden('You must be 18 or older to create a customer');
   }
 
-  const isCPFInUse = await client.customer.findUnique({
-    where: { cpf: data.cpf },
+  const alreadyExists = await client.customer.findUnique({
+    where: { email: data.email },
   });
-  if (isCPFInUse) throw httpErrors.conflict('CPF already in use');
+  if (alreadyExists) throw httpErrors.conflict('Email already in use');
 
   const birthDate = new Date(data.birthDate);
+  const hashedPassword = bcrypt.hashSync(data.password, 10);
+  const hashedCPF = bcrypt.hashSync(data.cpf, 10);
+
   return client.customer.create({
-    data: { ...data, birthDate },
+    data: { ...data, birthDate, password: hashedPassword, cpf: hashedCPF },
   });
 }
 
-export async function findByCPF(cpf: string) {
-  const customer = await client.customer.findUnique({
-    where: { cpf },
-  });
-  if (!customer) {
-    throw httpErrors.notFound('Customer not found');
-  }
+export async function findUnique(id: number) {
+  const customer = await client.customer.findUnique({ where: { id } });
+  if (!customer) throw httpErrors.notFound('Customer not found');
   return customer;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+export async function login({ email, password }: LoginData) {
+  const customer = await client.customer.findUnique({ where: { email } });
+  if (!customer) throw httpErrors.notFound('Email or Password incorrect');
+  const isValid = bcrypt.compareSync(password, customer.password);
+  if (!isValid) throw httpErrors.unauthorized('Email or Password incorrect');
+
+  return jwt.sign({ customerId: customer.id }, process.env.JWT_SECRET);
 }

@@ -23,7 +23,7 @@ Features
 
 <details>
             <summary>
-                <strong>POST</strong> /customers
+                <strong>POST</strong> /signup
             </summary>
 
 - É preciso enviar um body como esse:
@@ -42,8 +42,46 @@ Features
 
 <details>
             <summary>
+                <strong>POST</strong> /login
+            </summary>
+
+- Envie um body assim:
+
+```json
+{
+  "email": "rick@sanches.com",
+  "password": "c-137"
+}
+```
+
+- Retorna status <strong>200</strong> para sucesso
+
+e
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwNjQ5NzgxfQ.Uh1NxvzX-4XHvZOGdsEkCWk-KJTuNFNU8U-5dP59XFw"
+}
+```
+
+- Retorna <strong>401</strong> para email ou senha incorreto
+
+ </details>
+
+<details>
+            <summary>
                 <strong>POST</strong> /vehicles
             </summary>
+
+- Envie um Bearer token no headers como esse:
+
+```json
+{
+  "headers": {
+    "authorization": "Bearer 1cf7cccf-48ad-4edd-8b9d-121b1199aaf4"
+  }
+}
+```
 
 - É preciso enviar um body como esse:
 
@@ -146,7 +184,7 @@ npm run build
 npm run start (deploy)
 ```
 
-7. Run the project in development mode (nodemon)
+7. Run o projeto em modo de desenvolvimento (nodemon)
 
 ```bash
 npm run dev

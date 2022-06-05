@@ -23,7 +23,7 @@ Features
 
 <details>
             <summary>
-                <strong>POST</strong> /customers
+                <strong>POST</strong> /signup
             </summary>
 
 - You need to send a body like this:
@@ -33,7 +33,9 @@ Features
     "name":"Rick",
     "lastName":"Sanches",
     "birthDate":"02/15/1975",//MM/DD/YYYY  must be 18 years at least
-    "cpf":"16843218549" // 11 digits
+    "cpf":"16843218549", // 11 digits
+    "email":"rick@sanches.com",
+    "password":"c-137"
 }
 ```
 
@@ -42,8 +44,51 @@ Features
 
 <details>
             <summary>
+                <strong>POST</strong> /login
+            </summary>
+
+        send body request like this:
+
+```json
+{
+  "email": "rick@sanches.com",
+  "password": "c-137"
+}
+```
+
+- it returns status <strong>200</strong> for succes
+
+and
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwNjQ5NzgxfQ.Uh1NxvzX-4XHvZOGdsEkCWk-KJTuNFNU8U-5dP59XFw"
+}
+```
+
+- it return status <strong>401</strong> for incorrect password or email
+
+ </details>
+
+<details>
+            <summary>
                 <strong>POST</strong> /vehicles
             </summary>
+
+- send a Bearer token on headers like this:
+
+```json
+{
+  "headers": {
+    "authorization": "Bearer 1cf7cccf-48ad-4edd-8b9d-121b1199aaf4"
+  }
+}
+```
+
+- it returns <strong>400</strong> for empty auth or without Bearer
+
+- it returns <strong>401</strong> for unauthorized
+
 
 - You need to send a body like this:
 

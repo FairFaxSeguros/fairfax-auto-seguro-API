@@ -10,6 +10,9 @@ export async function disconnect() {
 export async function findVehicleByLicensePlate(licensePlate: string) {
   return client.vehicle.findUnique({ where: { licensePlate } });
 }
-export async function findCustomerByCPF(cpf: string) {
-  return client.customer.findUnique({ where: { cpf } });
+export async function findCustomerByEmail(email: string) {
+  return client.customer.findUnique({ where: { email } });
+}
+export async function findCustomerById(id: number) {
+  return client.customer.findUnique({ where: { id } });
 }

@@ -1,15 +1,15 @@
 ## FairFax auto API
 
-A maneira mais rápida de aprovar novos assegurados.
-Esse é o [FairFax-auto-seguro](https://github.com/FairFaxSeguros/fairfax-auto-seguro).
+The fastest way to approve new customers requests.
+This is the backend for [FairFax-auto-seguro](https://github.com/FairFaxSeguros/fairfax-auto-seguro)
 
-[English version](./README-en.md)
+[Versão em português](./README.md)
 
 Features
 
-- [x] Criar novo cliente
+- [x] Create new customer
 
-- [x] Criar novo veículo para o client
+- [x] Create new customer's vehicle
 
 ## Endpoints
 
@@ -18,7 +18,7 @@ Features
                 <strong>GET</strong> /health
             </summary>
 
-- Retorna status <strong>200</strong> para sucesso
+- it returns status <strong>200</strong> for succes
 </details>
 
 <details>
@@ -26,18 +26,18 @@ Features
                 <strong>POST</strong> /customers
             </summary>
 
-- É preciso enviar um body como esse:
+- You need to send a body like this:
 
 ```JSON
 {
     "name":"Rick",
     "lastName":"Sanches",
-    "birthDate":"02/15/1975",//MM/DD/AAAA é necessário ser maior de idade
-    "cpf":"16843218549" // 11 digitos
+    "birthDate":"02/15/1975",//MM/DD/YYYY  must be 18 years at least
+    "cpf":"16843218549" // 11 digits
 }
 ```
 
-- Retorna status <strong>201</strong> para sucesso
+- it returns status <strong>201</strong> for succes
 </details>
 
 <details>
@@ -45,18 +45,18 @@ Features
                 <strong>POST</strong> /vehicles
             </summary>
 
-- É preciso enviar um body como esse:
+- You need to send a body like this:
 
 ```JSON
 {
     "name":"Camaro",
     "licensePlate":"ar5t82",
-    "purchaseDate":"12/10/2021",// MM/DD/AAAA
-    "cpf":"00296049158" // 11 digitos
+    "purchaseDate":"12/10/2021",//MM/DD/YYYY
+    "cpf":"00296049158" // 11 digits
 }
 ```
 
-- Retorna status <strong>201</strong>
+- it returns status <strong>201</strong> for succes
 </details>
 
 ## Technologies
@@ -116,37 +116,31 @@ sudo apt install postgresql postgresql-contrib
 
 ## How to run
 
-1. Clone esse repositório
-2. Instale as dependencias
+1. Clone this repository
+2. Install dependencies
 
 ```bash
 npm i
 ```
 
-3. preencha o arquivo .env
+3. set your .env file
 
-4. Crie o banco de dados com o prisma
+4. Create database with prisma
 
-- abra o terminal e rode
+- open terminal and run
 
 ```bash
 npx prisma init
 npx prisma migrate dev
 ```
 
-5. Buildar o projeto
-
-```bash
-npm run build
-```
-
-6. Rode o projeto com
+5. Run the project with
 
 ```bash
 npm run start (deploy)
 ```
 
-7. Run the project in development mode (nodemon)
+6. Run the project in development mode (nodemon)
 
 ```bash
 npm run dev

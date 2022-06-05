@@ -14,6 +14,12 @@ export async function create(data: Omit<Customer, 'id'>) {
   if (age < 18) {
     throw httpErrors.forbidden('You must be 18 or older to create a customer');
   }
+
+  const isCPFInUse = await client.customer.findUnique({
+    where: { cpf: data.cpf },
+  });
+  if (isCPFInUse) throw httpErrors.conflict('CPF already in use');
+
   const birthDate = new Date(data.birthDate);
   return client.customer.create({
     data: { ...data, birthDate },

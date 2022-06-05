@@ -1,16 +1,12 @@
-## APPName
+## Fair AUTO
 
-Short description.
+The fastest way to approve new customers requests.
 
 Features
 
-- [x] Feature 1
+- [x] Create new customer
 
-- [x] Feature 2
-
-#### BONUS
-
-- [ ] BONUS
+- [x] Create new customer's vehicle
 
 ## Endpoints
 
@@ -20,6 +16,45 @@ Features
             </summary>
 
 - it returns status <strong>200</strong> for succes
+</details>
+
+<details>
+            <summary>
+                <strong>POST</strong> /customers
+            </summary>
+
+- You need to send a body like this:
+
+```JSON
+{
+    "name":"Rick",
+    "lastName":"Sanches",
+    "birthDate":"02/15/1975",//MM/DD/YYYY  must be 18 years at least
+    "cpf":"16843218549" // 11 digits
+}
+```
+
+- it returns status <strong>201</strong> for succes
+</details>
+
+<details>
+            <summary>
+                <strong>POST</strong> /vehicles
+            </summary>
+
+- You need to send a body like this:
+
+```JSON
+{
+    "name":"Camaro",
+    "licensePlate":"ar5t82",
+    "purchaseDate":"12/10/2021",//MM/DD/YYYY
+    "cpf":"00296049158" // 11 digits
+}
+```
+
+- it returns status <strong>201</strong> for succes
+</details>
 
 ## Technologies
 

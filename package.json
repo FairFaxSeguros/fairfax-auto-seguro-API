@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts",
     "start": "node dist/src/server.js",
     "dev": "nodemon src/server.ts",
+    "coverage": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i -- --coverage",
     "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",
     "test:migrations": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test npx prisma migrate dev",
     "seed": "npx prisma db seed",

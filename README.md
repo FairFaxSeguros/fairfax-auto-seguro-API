@@ -1,7 +1,7 @@
 ## FairFax auto API
 
 A maneira mais rápida de aprovar novos assegurados.
-Esse é o [FairFax-auto-seguro](https://github.com/FairFaxSeguros/fairfax-auto-seguro).
+Esse é o backend para [FairFax-auto-seguro](https://github.com/FairFaxSeguros/fairfax-auto-seguro).
 
 [English version](./README-en.md)
 

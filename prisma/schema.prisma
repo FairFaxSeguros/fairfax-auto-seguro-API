@@ -9,7 +9,7 @@ datasource db {
 
 model Customer {
   id        Int       @id @default(autoincrement())
-  cpf      String     @db.VarChar(11) @unique 
+  cpf       String    @unique @db.VarChar(11)
   name      String    @db.VarChar(255)
   lastName  String    @db.VarChar(255)
   birthDate DateTime  @db.Date
@@ -19,7 +19,7 @@ model Customer {
 model Vehicle {
   id           Int      @id @default(autoincrement())
   name         String   @db.VarChar(255)
-  licensePlate String   @db.VarChar(255)
+  licensePlate String   @unique @db.VarChar(255)
   purchaseDate DateTime @db.Date
   customerId   Int
   customer     Customer @relation(fields: [customerId], references: [id])

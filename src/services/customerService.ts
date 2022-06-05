@@ -19,3 +19,13 @@ export async function create(data: Omit<Customer, 'id'>) {
     data: { ...data, birthDate },
   });
 }
+
+export async function findByCPF(cpf: string) {
+  const customer = await client.customer.findUnique({
+    where: { cpf },
+  });
+  if (!customer) {
+    throw httpErrors.notFound('Customer not found');
+  }
+  return customer;
+}

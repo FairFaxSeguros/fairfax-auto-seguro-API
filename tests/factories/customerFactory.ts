@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import { client } from '../../src/database.js';
 
 export function generate() {
-  const cpfNumber = faker.datatype.number({ min: 100000000, max: 99999999999 });
+  const cpfNumber = faker.datatype.number({ min: 10000000000, max: 99999999999 });
   return {
     cpf: cpfNumber.toString(),
     name: faker.name.firstName(),
